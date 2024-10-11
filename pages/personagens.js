@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Alert, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import Titulo from '../components/titulo'
+import { Audio } from 'expo-av';
 
 export default function Personagens({ navigation }) {
   const [personagens, setPersonagens] = useState([]);
@@ -32,7 +33,11 @@ export default function Personagens({ navigation }) {
           keyExtractor={(personagem) => personagem.name} 
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
-              <TouchableOpacity style={styles.itemBotao} onPress={() => navigation.navigate('Detalhes do Personagem', {item})}>
+              <TouchableOpacity style={styles.itemBotao} 
+              onPress={() => {
+              playSound (); ///toca o som
+              navigation.navigate('Detalhes do Personagem', {item});
+              }}>
               <Text style={styles.itemText}>{item.name}</Text>  
               </TouchableOpacity>
             </View>
@@ -42,6 +47,14 @@ export default function Personagens({ navigation }) {
     </View>
   );
 }
+
+///função toca som 
+const playSound = async () => {
+  const { sound } = await Audio.Sound.createAsync(
+    require('../assets/sound_effect.mp3')
+  );
+  await sound.playAsync(); 
+};
 
 const styles = StyleSheet.create({
   container: {

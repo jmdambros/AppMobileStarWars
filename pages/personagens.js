@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Alert, TouchableOpacity } from 'react
 import axios from 'axios';
 import Titulo from '../components/titulo'
 import { Audio } from 'expo-av';
+import Botao from '../components/botao';
 
 export default function Personagens({ navigation }) {
   const [personagens, setPersonagens] = useState([]);
@@ -27,6 +28,11 @@ export default function Personagens({ navigation }) {
       <View style={styles.container_titulo}>
           <Titulo nomeTitulo="Lista de Personagens"/>
       </View>
+
+<View style={styles.botao}>
+        <Botao texto="Sobre" onPress={() => navigation.navigate('Sobre')}></Botao>
+      </View>
+
       <View style={styles.listContainer}>
         <FlatList
           data={personagens}
@@ -38,6 +44,8 @@ export default function Personagens({ navigation }) {
               playSound (); ///toca o som
               navigation.navigate('Detalhes do Personagem', {item});
               }}>
+
+
               <Text style={styles.itemText}>{item.name}</Text>  
               </TouchableOpacity>
             </View>
@@ -82,6 +90,19 @@ const styles = StyleSheet.create({
   },
   container_titulo:{
     marginBottom: "5%"
-  }
+  },
+
+
+  botao:{
+    backgroundColor: 'white', 
+    padding: 10,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    },
+
+    texto:{
+        fontSize: 20,
+    }
 });
 

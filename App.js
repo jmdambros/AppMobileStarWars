@@ -5,6 +5,7 @@ import Personagens from './pages/personagens';
 import DetalhesPersonagem from './pages/detalhesPersonagem';
 import Naves from './pages/naves';
 import Filmes from './pages/filmes';
+import Sobre from './pages/sobre';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
       <Stack.Screen name = 'Detalhes do Personagem' component={DetalhesPersonagem}/>
       <Stack.Screen name = 'Naves' component={Naves}/>
       <Stack.Screen name = 'Filmes' component={Filmes}/>
+      <Stack.Screen name = 'Sobre' component={Sobre}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
